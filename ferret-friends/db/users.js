@@ -25,7 +25,15 @@ async function checkWater(id) {
     return person.water
 }
 
+async function checkFertilizer(id) {
+    id = ObjectId(id);
+    const userCollection = await users();
+    const person = await userCollection.findOne({_id:id});
+    return person.fertilizer
+}
+
 module.exports ={
     updateName,
-    checkWater
+    checkWater,
+    checkFertilizer
 }
