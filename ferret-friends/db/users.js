@@ -17,6 +17,15 @@ async function updateName(id, newName){
 
 }
 
+/* Returns the amount of water the player has */
+async function checkWater(id) {
+    id = ObjectId(id);
+    const userCollection = await users();
+    const person = await userCollection.findOne({_id:id});
+    return person.water
+}
+
 module.exports ={
-    updateName
+    updateName,
+    checkWater
 }
