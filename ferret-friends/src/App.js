@@ -5,6 +5,8 @@ function App() {
   return (
     <div className="App">
       <text>Welcome to Garden Builder</text>
+      <br />
+      <button> Click me </button>
     </div>
   );
 }
