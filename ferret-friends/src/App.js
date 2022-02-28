@@ -3,10 +3,14 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <text>Welcome to Garden Builder</text>
+    <div className="App" style={{ height: '100%', position: 'absolute', left: '0px', width: '100%', overflow: 'hidden' }}>
+      <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
       <br />
-      <button> Click me </button>
+      <div className="increment-screen">
+        <button style={{ height: 50, backgroundColor: "#6eeb34", borderWidth: 7, borderRadius: 5 }} className="water-plant"> Water Plant </button>
+        <br />
+        <text></text>
+      </div>
     </div>
   );
 }
