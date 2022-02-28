@@ -21,6 +21,23 @@ async function waterPlant(id, amount){
     changedPlant._id=changedPlant._id.toString();
     return updatedPlant;
 }
+//plant dies if there is not enough care. 
+async function deadPlant(amount) {
+    const plantCollection = await plants()
+    //still need to work on this. 
+}
+
+
+//pack fertilizer in dirt 
+//fix this 
+const dirt = mongoCollections.dirt;
+async function fertilizer (amount) {
+    const plantCollection = await plants()
+    let dirt = await empty()
+    
+
+}
+
 
 
 

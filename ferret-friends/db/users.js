@@ -32,6 +32,9 @@ async function checkFertilizer(id) {
     return person.fertilizer
 }
 
+
+
+
 module.exports ={
     updateName,
     checkWater,
