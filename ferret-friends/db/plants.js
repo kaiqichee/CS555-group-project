@@ -21,6 +21,27 @@ async function waterPlant(id, amount){
     changedPlant._id=changedPlant._id.toString();
     return updatedPlant;
 }
+
+
+
+//Buy fertilizer
+//WIP
+
+function buyFertilizer(nameOfFertilizer, priceOfFertilizer) {
+    // List the fertilizer details
+    let fertilizer = {
+        name: nameOfFertilizer,
+        price: Float32Array(),
+    }
+    return fertilizer;
+}
+async function buyFertilizer(amount){
+    id =  
+}
+
+
+
+
 //plant dies if there is not enough care. 
 async function deadPlant(amount) {
     const plantCollection = await plants()

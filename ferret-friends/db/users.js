@@ -17,6 +17,35 @@ async function updateName(id, newName){
 
 }
 
+
+
+//Create user Account
+// https://docs.mongodb.com/manual/tutorial/create-users/
+// https://docs.mongodb.com/manual/reference/method/db.createUser/
+//WIP
+db.createUser(
+    {	user: "Player 1",
+        pwd: passwordPrompt(),
+        roles:[
+            {role: "Player 1" , db:"users"}
+        ]
+    }
+)
+
+//Create user Login
+// https://docs.mongodb.com/manual/reference/method/db.auth/
+//WIP
+db.auth( 
+    {   user: <usernam />,
+        pwd: passwordPrompt(),
+        mechanism: <authentication mechanism />,
+        digestPassword: <boolean />
+    } 
+)
+
+
+
+
 /* Returns the amount of water the player has */
 async function checkWater(id) {
     id = ObjectId(id);
