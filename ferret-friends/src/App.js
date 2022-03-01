@@ -48,8 +48,16 @@ function App() {
           {" "}
           Water Plant{" "}
         </button>
-      <br/>
-      <br/>
+        <br />
+        <button
+          style={{ height: 50, backgroundColor: "red" }}
+          className="deprive-plant"
+          onClick={() => setHealth(health - 1)}
+        >
+          {" "}
+          lower health (not for production/for testing){" "}
+        </button>
+        <br />
         <button
           style={{
             height: 50,
@@ -64,8 +72,7 @@ function App() {
           {" "}
           Buy Seeds{" "}
         </button>
-        <br/>
-        <br/>
+        <br />
         <button
           style={{
             height: 50,
@@ -80,23 +87,13 @@ function App() {
           {" "}
           Collect Water{" "}
         </button>
-      <br/>
-      <br/>
+
         <br />
         <h2 style={{ color: "white" }}>Current Health: {health}</h2>
-        <br/>
+        <br />
         <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
-        <br/>
+        <br />
         <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
-
-        <button
-          style={{ height: 50, backgroundColor: "red" }}
-          className="deprive-plant"
-          onClick={() => setHealth(health - 1)}
-        >
-          {" "}
-          lower health (not for production/for testing){" "}
-        </button>
       </div>
     </div>
   );
