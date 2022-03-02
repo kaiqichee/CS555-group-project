@@ -10,4 +10,4 @@ How to run the program:
 To test/view backend db functions:
 1. Navigate into the db directory
 2. To view functions look in the plants.js and users.js files
-3. To run tests run "node plantTest.js" or "node userTest.js"
+3. To run tests run "node plantTest.js", "node userTest.js", or "npm test"
