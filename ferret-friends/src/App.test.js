@@ -15,3 +15,6 @@ test("fertilizer amount", async () => {
   let fertilizerAmount = await checkFertilizer(user)
   expect(fertilizerAmount).toBe(0);
 });
+
+
+//No way to test the buttons because it isn't connected to the database yet
