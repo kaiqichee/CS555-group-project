@@ -1,6 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+// For testing  if the plant is fully grown and seeing a positive quote we check if curren thealth is more than 10 .
+// And also total plants will apper and be upgraded
 
 function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
