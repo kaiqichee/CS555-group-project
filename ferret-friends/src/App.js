@@ -7,8 +7,19 @@ import { useState } from "react";
 function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
   const [seeds, setSeeds] = useState(0);
-  const [water_level, collectWater] = useState(0);
+  const [water_level, setWater] = useState(0);
   const value = 10;
+
+  function waterPlant() {
+    if (water_level <= 0) {
+      alert("Not enough water!")
+    }
+    else {
+      setWater(water_level - 1)
+      setHealth(health + 1)
+    }
+  }
+
   return (
     <div
       className="App"
@@ -45,7 +56,7 @@ function App() {
             borderColor: "#E36959",
           }}
           className="water-plant"
-          onClick={() => setHealth(health + 1)}
+          onClick={waterPlant}
         >
           {" "}
           Water Plant{" "}
@@ -84,7 +95,7 @@ function App() {
             borderColor: "#E36959",
           }}
           className="collect-water"
-          onClick={() => collectWater(water_level + 1)}
+          onClick={() => setWater(water_level + 1)}
         >
           {" "}
           Collect Water{" "}
