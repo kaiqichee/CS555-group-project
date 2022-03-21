@@ -21,8 +21,7 @@ async function waterPlant(id, amount){
     changedPlant._id=changedPlant._id.toString();
     return updatedPlant;
 }
-<<<<<<< Updated upstream
-=======
+
 //plant dies if there is not enough care. 
 async function deadPlant(amount) {
     const plantCollection = await plants()
@@ -41,7 +40,7 @@ async function fertilizer (id,amount) {
 
 }
 
->>>>>>> Stashed changes
+
 
 
 
