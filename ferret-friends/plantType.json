@@ -1,0 +1,6 @@
+[{"name":"small plant", "price": 0, "type":"plant"},
+{"name":"medium plant", "price": 1, "type":"plant"},
+{"name":"large plant", "price": 3, "type":"plant"},
+{"name":"apple tree", "price": 7, "type":"fruit tree"},
+{"name":"lemon tree", "price": 10, "type":"fruit tree"},
+{"name":"pear tree", "price": 13, "type":"fruit tree"}]
