@@ -2,6 +2,14 @@ const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 let { ObjectId } = require('mongodb');
 
+// user should have fields:
+// {_id: ObjectId,
+// username: String,
+// password: String
+// plants: array of plant ObjectId's,
+// money: Int}
+//
+
 /* Create a user with given username */
 async function createUser(name) {
     let user = {
@@ -31,7 +39,6 @@ async function updateName(id, newName){
     }
     changedPerson._id=changedPerson._id.toString();
     return changedPerson;
-
 }
 
 

@@ -1,0 +1,6 @@
+[{"pid": 1, "name":"small plant", "price": 0, "type":"plant"},
+{"pid": 2, "name":"medium plant", "price": 1, "type":"plant"},
+{"pid": 3, "name":"large plant", "price": 3, "type":"plant"},
+{"pid": 4, "name":"apple tree", "price": 7, "type":"fruit tree"},
+{"pid": 5, "name":"lemon tree", "price": 10, "type":"fruit tree"},
+{"pid": 6, "name":"pear tree", "price": 13, "type":"fruit tree"}]

@@ -6,6 +6,7 @@ import { ReactComponent as FullWateringCan } from "./assets/full_can.svg";
 function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
   const [seeds, setSeeds] = useState(0);
+
   const [water_level, setWater] = useState(0);
   const [fruit, setFruits] = useState(0);
   const [pfruit, setPFruits] = useState(0);
@@ -101,6 +102,19 @@ function App() {
       <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
       <br />
 
+      {health > value && (
+        <h2 style={{ color: "Red" }}>Total plant: {(health - 1) / 10} </h2>
+      )}
+
+      {health >= value && <h2>Plant is fully grown</h2>}
+      {health >= value && (
+        <h2>
+          {" "}
+          It’s not the events of our lives that shape us, but our beliefs as to
+          what those events mean{" "}
+        </h2>
+      )}
+
       <div className="increment-screen">
         <button
           style={{
@@ -133,6 +147,7 @@ function App() {
           Buy Seeds{" "}
         </button>
         <br />
+
         <br />
         <button
           style={{
@@ -148,6 +163,7 @@ function App() {
           {" "}
           Collect Water{" "}
         </button>
+
         <br />
         <h2 style={{ color: "white" }}>Current Health: {health}</h2>
         <br />
