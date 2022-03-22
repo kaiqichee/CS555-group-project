@@ -38,10 +38,15 @@ async function fertilizer (id,amount) {
     const specificPlant = await plantCollection.findOne({_id:id});
     fertilizedPlant = specificPlant; 
     fertilizedPlant._id = specificPlant.dirt; 
-    //work in progress
-    
-    
+    //work in progress  
 
+}
+
+//kill insects 
+const insect = mongoCollections.insects;
+async function killInsects(id, amount) {
+    const plantCollection = await plants();
+    //work in progress
 }
 
 
