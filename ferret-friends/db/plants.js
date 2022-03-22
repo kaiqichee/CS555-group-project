@@ -25,17 +25,21 @@ async function waterPlant(id, amount){
 //plant dies if there is not enough care. 
 async function deadPlant(amount) {
     const plantCollection = await plants()
-    //still need to work on this. 
+    if(deadPlant === 0)  {
+        throw 'Not enough care for the plant';
+    }
 }
 
 
-//pack fertilizer in dirt 
-//fix this 
+//pack fertilizer in dirt  
 const dirt = mongoCollections.dirt;
 async function fertilizer (id,amount) {
     const plantCollection = await plants()
     const specificPlant = await plantCollection.findOne({_id:id});
-    let dirt = await empty()
+    fertilizedPlant = specificPlant; 
+    fertilizedPlant._id = specificPlant.dirt; 
+    //work in progress
+    
     
 
 }
