@@ -8,6 +8,7 @@ function App() {
   const [seeds, setSeeds] = useState(0);
   const [water_level, setWater] = useState(0);
   const [fruit, setFruits] = useState(0);
+  const [pfruit, setPFruits] = useState(0);
   const [bg_color, setBgColor] = useState(0);
   const SmallSizeLimit = 50;
   const MediumSizeLimit = 200;
@@ -115,10 +116,8 @@ function App() {
           {" "}
           Water Plant{" "}
         </button>
-
         <br />
         <br />
-
         <button
           style={{
             height: 50,
@@ -133,10 +132,8 @@ function App() {
           {" "}
           Buy Seeds{" "}
         </button>
-
         <br />
         <br />
-
         <button
           style={{
             height: 50,
@@ -151,7 +148,6 @@ function App() {
           {" "}
           Collect Water{" "}
         </button>
-
         <br />
         <h2 style={{ color: "white" }}>Current Health: {health}</h2>
         <br />
@@ -174,13 +170,11 @@ function App() {
         <br />
         <h2 style={{ color: "p" }}>Plant Size: {returnSize(health)}</h2>
         <h2 style={{ color: "black" }}>Fruit Plants: {fruit}</h2>
-
         {health > SmallSizeLimit && (
           <h2 style={{ color: "cherry" }}>
             Total plant: {(health - 1) / 10}{" "}
           </h2> /*Total plant size*/
         )}
-
         {(health - 1) / 10 >= 5 && (
           <button
             style={{
@@ -197,11 +191,26 @@ function App() {
             Grow fruit tree{" "}
           </button>
         )}
-        <br />
+        {fruit > 10 && (
+          <button
+            style={{
+              height: 50,
+              backgroundColor: "#6eeb34",
+              borderWidth: 7,
+              borderRadius: 5,
+              borderColor: "#E36959",
+            }}
+            className="grow-fruit"
+            onClick={() => setFruits(fruit - 1)}
+          >
+            {" "}
+            Pick the grown fruit{" "}
+          </button>
+        )}
 
         <br />
         <br />
-
+        <br />
         {health >= SmallSizeLimit && (
           <h2 style={{ color: "cherry" }}>Plant is fully grown</h2>
         )}
@@ -214,7 +223,6 @@ function App() {
             to what those events mean"{" "}
           </h2>
         )}
-
         {seeds >= 100 && (
           <h2 style={{ color: "blue" }}>
             {" "}
