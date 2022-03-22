@@ -1,13 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import {ReactComponent as EmptyWateringCan} from './assets/empty_can.svg';
+import {ReactComponent as FullWateringCan} from './assets/full_can.svg';
 // For testing  if the plant is fully grown and seeing a positive quote we check if curren thealth is more than 10 .
 // And also total plants will apper and be upgraded
 
 function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
   const [seeds, setSeeds] = useState(0);
-  const [water_level, collectWater] = useState(0);
+  const [water_level, setWater] = useState(0);
 
 
   const SmallSizeLimit = 50;
@@ -21,6 +22,17 @@ function App() {
       return "Medium"
     }
   }
+
+  function waterPlant() {
+    if (water_level <= 0) {
+      alert("Not enough water!")
+    }
+    else {
+      setWater(water_level - 1)
+      setHealth(health + 1)
+    }
+  }
+
 
   return (
     <div
@@ -46,7 +58,7 @@ function App() {
             borderColor: "#E36959",
           }}
           className="water-plant"
-          onClick={() => setHealth(health + 1)}
+          onClick={waterPlant}
         >
           {" "}
           Water Plant{" "}
@@ -82,7 +94,7 @@ function App() {
             borderColor: "#E36959",
           }}
           className="collect-water"
-          onClick={() => collectWater(water_level + 1)}
+          onClick={() => setWater(water_level + 1)}
         >
           {" "}
           Collect Water{" "}
@@ -93,7 +105,10 @@ function App() {
         <br />
         <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
         <br />
-        <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+        <div style={{display: "flex", alignItems:"center", justifyContent: "center"}}>
+          {water_level > 0 ? <FullWateringCan style={{height:"100px"}}/> : <EmptyWateringCan style={{height:"100px"}}/>}
+          <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+        </div>
         <br />
         <h2 style={{ color: "p" }}>Plant Size: {returnSize(health)}</h2>
 

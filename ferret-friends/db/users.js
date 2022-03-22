@@ -78,6 +78,14 @@ async function checkFertilizer(id) {
     return person.fertilizer
 }
 
+async function updateWater(id, water_level) {
+    id = ObjectId(id);
+    const userCollection = await users();
+    await userCollection.updateOne(
+        { _id: id },
+        { $set: { water: water_level } }
+    )
+}
 
 
 
@@ -85,5 +93,6 @@ module.exports ={
     createUser,
     updateName,
     checkWater,
-    checkFertilizer
+    checkFertilizer,
+    updateWater
 }
