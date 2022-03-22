@@ -1,5 +1,7 @@
 import "./App.css";
 import { useState } from "react";
+import {ReactComponent as EmptyWateringCan} from './assets/empty_can.svg';
+import {ReactComponent as FullWateringCan} from './assets/full_can.svg';
 // For testing  if the plant is fully grown and seeing a positive quote we check if curren thealth is more than 10 .
 // And also total plants will apper and be upgraded
 
@@ -103,7 +105,10 @@ function App() {
         <br />
         <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
         <br />
-        <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+        <div style={{display: "flex", alignItems:"center", justifyContent: "center"}}>
+          {water_level > 0 ? <FullWateringCan style={{height:"100px"}}/> : <EmptyWateringCan style={{height:"100px"}}/>}
+          <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+        </div>
         <br />
         <h2 style={{ color: "p" }}>Plant Size: {returnSize(health)}</h2>
 
