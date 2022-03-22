@@ -15,32 +15,31 @@ function App() {
   var colors = [
     {
       value: 1,
-      label: "teal"
+      label: "teal",
     },
     {
       value: 2,
-      label: "green"
+      label: "green",
     },
     {
       value: 3,
-      label: "gray"
+      label: "gray",
     },
     {
       value: 4,
-      label: "#51ABF0"
-    }
+      label: "#51ABF0",
+    },
   ];
   var [inputValue, setInputValue] = useState(colors[0].label);
   var [bgcolor, setbgColor] = useState(colors[0].label);
 
   var ddlhandle = (e) => {
     setInputValue(e.target.value);
-  }
+  };
 
   var buttonHandle = () => {
     setBgColor(inputValue);
-  }
-
+  };
 
   function returnSize(health) {
     //Returns the current size of the plant
@@ -48,9 +47,8 @@ function App() {
       return "Small";
     } else if (health <= MediumSizeLimit) {
       return "Medium";
-    }
-    else {
-      return "Big"
+    } else {
+      return "Big";
     }
   }
 
@@ -71,30 +69,36 @@ function App() {
         left: "0px",
         width: "100%",
         overflow: "hidden",
-        backgroundColor: bg_color
+        backgroundColor: bg_color,
       }}
     >
       <div>
-        <button 
-        onClick={buttonHandle}
-        style={{
-        display: 'flex', 
-        justifyContent: 'left', 
-        height: 35,
-        backGroundcolor: "teal",
-        borderWidth: 7,
-        borderRadius: 5,
-        borderColor: "#E36959"
-        }}>{" "} Change Background Color {" "}</button>
-        <select style = {{display: 'flex', justifyContent: 'left'}} onChange={ddlhandle}>
-        {colors.map((color) => (
-          <option value={color.label}>{color.label}</option>
-        ))}
-      </select>
+        <button
+          onClick={buttonHandle}
+          style={{
+            display: "flex",
+            justifyContent: "left",
+            height: 35,
+            backGroundcolor: "teal",
+            borderWidth: 7,
+            borderRadius: 5,
+            borderColor: "#E36959",
+          }}
+        >
+          {" "}
+          Change Background Color{" "}
+        </button>
+        <select
+          style={{ display: "flex", justifyContent: "left" }}
+          onChange={ddlhandle}
+        >
+          {colors.map((color) => (
+            <option value={color.label}>{color.label}</option>
+          ))}
+        </select>
       </div>
       <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
       <br />
-
 
       <div className="increment-screen">
         <button
