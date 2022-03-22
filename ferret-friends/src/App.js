@@ -8,7 +8,20 @@ function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
   const [seeds, setSeeds] = useState(0);
   const [water_level, collectWater] = useState(0);
-  const value = 10;
+
+
+  const SmallSizeLimit = 50;
+  const MediumSizeLimit = 200;
+
+  function returnSize(health) {
+    //Returns the current size of the plant
+    if (health <= SmallSizeLimit && health > 0) {
+      return "Small"
+    } else if (health <= MediumSizeLimit) {
+      return "Medium"
+    }
+  }
+
   return (
     <div
       className="App"
@@ -23,23 +36,11 @@ function App() {
       <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
       <br />
 
-      {health > value && (
-        <h2 style={{ color: "Red" }}>Total plant: {(health - 1) / 10} </h2>
-      )}
-      {health >= value && <h2>Plant is fully grown</h2>}
-      {health >= value && (
-        <h2>
-          {" "}
-          It’s not the events of our lives that shape us, but our beliefs as to
-          what those events mean{" "}
-        </h2>
-      )}
-
       <div className="increment-screen">
         <button
           style={{
             height: 50,
-            backgroundColor: "#6eeb34",
+            backgroundColor: "teal",
             borderWidth: 7,
             borderRadius: 5,
             borderColor: "#E36959",
@@ -50,20 +51,14 @@ function App() {
           {" "}
           Water Plant{" "}
         </button>
+
         <br />
-        <button
-          style={{ height: 50, backgroundColor: "red" }}
-          className="deprive-plant"
-          onClick={() => setHealth(health - 1)}
-        >
-          {" "}
-          lower health (not for production/for testing){" "}
-        </button>
         <br />
+
         <button
           style={{
             height: 50,
-            backgroundColor: "#63db34",
+            backgroundColor: "brown",
             borderWidth: 7,
             borderRadius: 5,
             borderColor: "#E36851",
@@ -74,7 +69,10 @@ function App() {
           {" "}
           Buy Seeds{" "}
         </button>
+
         <br />
+        <br />
+
         <button
           style={{
             height: 50,
@@ -96,6 +94,37 @@ function App() {
         <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
         <br />
         <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+        <br />
+        <h2 style={{ color: "p" }}>Plant Size: {returnSize(health)}</h2>
+
+
+        {health > SmallSizeLimit && (
+          <h2 style={{ color: "cherry" }}>Total plant: {(health - 1) / 10} </h2> /*Total plant size*/
+        )}
+
+        <br />
+        <br />
+
+
+        {health >= SmallSizeLimit && <h2 style={{ color: "cherry" }}>Plant is fully grown</h2>}
+        <br />
+        <br />
+        {health >= SmallSizeLimit && (
+          <h2 style={{ color: "gold" }}>
+            {" "}
+            "It’s not the events of our lives that shape us, but our beliefs as to
+            what those events mean"{" "}
+          </h2>
+        )}
+
+        {seeds >= 100 && (
+          <h2 style={{ color: "blue" }}>
+            {" "}"Its your lucky day! It's Raining"
+            {" "}
+          </h2>
+        )}
+
+
       </div>
     </div>
   );
