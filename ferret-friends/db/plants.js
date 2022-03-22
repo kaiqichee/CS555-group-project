@@ -47,6 +47,34 @@ async function addPlant(pid, owner){
     return "Successfully added plant";
 }
 
+//plant dies if there is not enough care. 
+async function deadPlant(amount) {
+    const plantCollection = await plants()
+    if(deadPlant === 0)  {
+        throw 'Not enough care for the plant';
+    }
+}
+
+
+//pack fertilizer in dirt  
+const dirt = mongoCollections.dirt;
+async function fertilizer (id,amount) {
+    const plantCollection = await plants()
+    const specificPlant = await plantCollection.findOne({_id:id});
+    fertilizedPlant = specificPlant; 
+    fertilizedPlant._id = specificPlant.dirt; 
+    //work in progress  
+
+}
+
+//kill insects 
+const insect = mongoCollections.insects;
+async function killInsects(id, amount) {
+    const plantCollection = await plants();
+    //work in progress
+}
+
+
 
 
 //Buy fertilizer
