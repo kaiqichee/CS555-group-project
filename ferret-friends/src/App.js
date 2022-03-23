@@ -13,7 +13,8 @@ function App() {
   const [bg_color, setBgColor] = useState(0);
   const SmallSizeLimit = 50;
   const MediumSizeLimit = 200;
-
+  const value = 10;
+  
   var colors = [
     {
       value: 1,
