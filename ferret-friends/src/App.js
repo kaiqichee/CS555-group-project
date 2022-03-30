@@ -2,6 +2,8 @@ import "./App.css";
 import { useState } from "react";
 import { ReactComponent as EmptyWateringCan } from "./assets/empty_can.svg";
 import { ReactComponent as FullWateringCan } from "./assets/full_can.svg";
+import ReactAudioPlayer from 'react-audio-player';
+
 
 function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
@@ -75,6 +77,7 @@ function App() {
         backgroundColor: bg_color,
       }}
     >
+      <ReactAudioPlayer src="../background.mp3" autoPlay />
       <div>
         <button
           onClick={buttonHandle}
