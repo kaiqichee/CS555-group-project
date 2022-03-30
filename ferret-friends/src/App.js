@@ -77,7 +77,7 @@ function App() {
         backgroundColor: bg_color,
       }}
     >
-      <ReactAudioPlayer src="../background.mp3" autoPlay />
+      <ReactAudioPlayer src="./background.mp3" autoPlay controls />
       <div>
         <button
           onClick={buttonHandle}
