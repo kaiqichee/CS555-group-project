@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ReactComponent as EmptyWateringCan } from "./assets/empty_can.svg";
 import { ReactComponent as FullWateringCan } from "./assets/full_can.svg";
 import ReactAudioPlayer from 'react-audio-player';
+const background = require('./background.mp3');
 
 
 function App() {
@@ -77,7 +78,7 @@ function App() {
         backgroundColor: bg_color,
       }}
     >
-      <ReactAudioPlayer src="./background.mp3" autoPlay controls />
+      <ReactAudioPlayer src={background} autoPlay controls />
       <div>
         <button
           onClick={buttonHandle}
