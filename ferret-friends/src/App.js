@@ -78,7 +78,7 @@ function App() {
         backgroundColor: bg_color,
       }}
     >
-      <ReactAudioPlayer src={background} autoPlay controls />
+      <ReactAudioPlayer src={background} autoPlay controls volume={0.15} />
       <div>
         <button
           onClick={buttonHandle}
