@@ -11,18 +11,18 @@ let { ObjectId } = require('mongodb');
 //
 
 //updates the amount of water the plant with given id has
-async function waterPlant(id, amount){
+async function updatePlant(id, water, health){
     //error check?
     id=ObjectId(id);
     const plantCollection = await plants();
     const specificPlant = await plantCollection.findOne({_id:id});
-    changedPlant = specificPlant;
-    //if too much water for plant -- case
-    changedPlant.water = changedPlant.water+amount;
+    let changedPlant = specificPlant;
+    changedPlant.water = changedPlant.water + water;
+    changedPlant.health = health;
 
     const updatedPlant = await plantCollection.updateOne({_id:id}, {$set:changedPlant});
-    if (updatedPlant === 0){
-        throw 'Plant could not be watered';
+    if (updatedPlant === 0) {
+        throw 'Plant could not be changed';
     }
     console.log(updatedPlant);
     changedPlant._id=changedPlant._id.toString();
@@ -61,7 +61,7 @@ const dirt = mongoCollections.dirt;
 async function fertilizer (id,amount) {
     const plantCollection = await plants()
     const specificPlant = await plantCollection.findOne({_id:id});
-    fertilizedPlant = specificPlant; 
+    let fertilizedPlant = specificPlant; 
     fertilizedPlant._id = specificPlant.dirt; 
 
 }
@@ -90,33 +90,10 @@ function buyFertilizer(nameOfFertilizer, priceOfFertilizer) {
     }
     return fertilizer;
 }
-async function buyFertilizer(amount){
-    id =  
-}
-
-
-
-
-//plant dies if there is not enough care. 
-async function deadPlant(amount) {
-    const plantCollection = await plants()
-    //still need to work on this. 
-}
-
-
-//pack fertilizer in dirt 
-//fix this 
-const dirt = mongoCollections.dirt;
-async function fertilizer (amount) {
-    const plantCollection = await plants()
-    let dirt = await empty()
-    
-
-}
 
 
 
 
 module.exports = {
-    waterPlant
+    updatePlant
 }
