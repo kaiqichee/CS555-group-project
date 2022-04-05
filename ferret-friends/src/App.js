@@ -57,14 +57,24 @@ function App() {
     }
   }
 
+  function isRainDay(numberOfSeeds) {
+    //Decides if it's a rain day or not
+    var RainDay = false;
+    (numberOfSeeds == 10) ? RainDay = true : RainDay = false;
+    return RainDay
+  }
+
+
+
   function waterPlant() {
     if (water_level <= 0) {
-      alert("Not enough water!");
+      alert("Collect More Water!");
     } else {
       setWater(water_level - 1);
       setHealth(health + 1);
     }
   }
+
   return (
     <div
       className="App"
@@ -76,6 +86,7 @@ function App() {
         // overflow: "hidden",
         backgroundColor: bg_color,
         // backgroundRepeat: "space",
+        flex: 1,
       }}
     >
       <ReactAudioPlayer src={background} autoPlay controls volume={0.15} />
@@ -110,9 +121,9 @@ function App() {
         <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
         <br />
         {health > value && (
-          <h2 style={{ color: "Red" }}>Total plant: {(health - 1) / 10} </h2>
+          <h2 style={{ color: "Red" }}>Total plant: {(health) / 10} </h2>
         )}
-        {health >= value && <h2>Plant is fully grown</h2>}
+        {health >= value && (Math.floor(health / 10) > 1) ? (<h2> {Math.floor((health) / 10)} Fully Grown Plants</h2>) : (<h2> {Math.floor((health) / 10)} Fully Grown Plant</h2>)}
         {health >= value && (
           <h2>
             {" "}
@@ -154,7 +165,12 @@ function App() {
             borderColor: "#E36851",
           }}
           className="buy-seeds"
-          onClick={() => setSeeds(seeds + 1)}
+          onClick={() => {
+            setSeeds((seeds > 9) ? seeds - 10 : seeds + 1)
+            if (isRainDay(seeds)) {
+              setHealth(health + 15)
+            }
+          }}
         >
           {" "}
           Buy Seeds{" "}
