@@ -10,6 +10,19 @@ let { ObjectId } = require('mongodb');
 // alive: Bool}
 //
 
+async function getOrCreatePlant() {
+    const plantCollection = await plants();
+    const plant = await plantCollection.findOne();
+    if (!plant) {
+      let newPlant = { name: "Tree", water: 0, health: 0 };
+      const insertInfo = await plantCollection.insertOne(newPlant);
+      newPlant._id = insertInfo.insertedId;
+      return newPlant;
+    } else {
+      return plant;
+    }
+}
+
 //updates the amount of water the plant with given id has
 async function updatePlant(id, water, health){
     //error check?
