@@ -63,7 +63,6 @@ async function fertilizer (id,amount) {
     const specificPlant = await plantCollection.findOne({_id:id});
     fertilizedPlant = specificPlant; 
     fertilizedPlant._id = specificPlant.dirt; 
-    //work in progress  
 
 }
 
@@ -71,6 +70,9 @@ async function fertilizer (id,amount) {
 const insect = mongoCollections.insects;
 async function killInsects(id, amount) {
     const plantCollection = await plants();
+    if(killInsects == 0) {
+        throw 'Insects are dead'; 
+    }
     //work in progress
 }
 
