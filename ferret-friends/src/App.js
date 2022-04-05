@@ -99,10 +99,10 @@ function App() {
             display: "flex",
             justifyContent: "left",
             height: 35,
-            backGroundcolor: "teal",
+            backgroundColor: bg_color,
             borderWidth: 7,
             borderRadius: 5,
-            borderColor: "#E36959",
+            borderColor: "white",
           }}
         >
           {" "}
