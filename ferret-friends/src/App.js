@@ -2,11 +2,13 @@ import "./App.css";
 import { useState } from "react";
 import { ReactComponent as EmptyWateringCan } from "./assets/empty_can.svg";
 import { ReactComponent as FullWateringCan } from "./assets/full_can.svg";
+import ReactAudioPlayer from "react-audio-player";
+import Sun from "./hhJq_B.gif";
+const background = require("./background.mp3");
 
 function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
   const [seeds, setSeeds] = useState(0);
-
   const [water_level, setWater] = useState(0);
   const [fruit, setFruits] = useState(0);
   const [pfruit, setPFruits] = useState(0);
@@ -14,7 +16,7 @@ function App() {
   const SmallSizeLimit = 50;
   const MediumSizeLimit = 200;
   const value = 10;
-  
+
   var colors = [
     {
       value: 1,
@@ -71,10 +73,13 @@ function App() {
         position: "absolute",
         left: "0px",
         width: "100%",
-        overflow: "hidden",
+        // overflow: "hidden",
         backgroundColor: bg_color,
+        // backgroundRepeat: "space",
       }}
     >
+      <ReactAudioPlayer src={background} autoPlay controls volume={0.15} />
+
       <div>
         <button
           onClick={buttonHandle}
@@ -99,24 +104,31 @@ function App() {
             <option value={color.label}>{color.label}</option>
           ))}
         </select>
+        {/* <img src={Sun} height="200" width="200" /> */}
       </div>
-      <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
-      <br />
-
-      {health > value && (
-        <h2 style={{ color: "Red" }}>Total plant: {(health - 1) / 10} </h2>
-      )}
-
-      {health >= value && <h2>Plant is fully grown</h2>}
-      {health >= value && (
-        <h2>
-          {" "}
-          It’s not the events of our lives that shape us, but our beliefs as to
-          what those events mean{" "}
-        </h2>
-      )}
-
-      <div className="increment-screen">
+      <div>
+        <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
+        <br />
+        {health > value && (
+          <h2 style={{ color: "Red" }}>Total plant: {(health - 1) / 10} </h2>
+        )}
+        {health >= value && <h2>Plant is fully grown</h2>}
+        {health >= value && (
+          <h2>
+            {" "}
+            It’s not the events of our lives that shape us, but our beliefs as
+            to what those events mean{" "}
+          </h2>
+        )}
+      </div>
+      <div
+        className="increment-screen"
+        style={{
+          backgroundImage: `url(${Sun})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
         <button
           style={{
             height: 50,
