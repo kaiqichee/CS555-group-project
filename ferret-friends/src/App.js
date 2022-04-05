@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { ReactComponent as EmptyWateringCan } from "./assets/empty_can.svg";
 import { ReactComponent as FullWateringCan } from "./assets/full_can.svg";
+import { ReactComponent as SeedImage } from "./assets/seed.png"
 import ReactAudioPlayer from "react-audio-player";
 import Sun from "./hhJq_B.gif";
 const background = require("./background.mp3");
@@ -120,17 +121,8 @@ function App() {
       <div>
         <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
         <br />
-        {health > value && (
-          <h2 style={{ color: "Red" }}>Total plant: {(health) / 10} </h2>
-        )}
+        <h2 style={{ color: "Red" }}>Total plant: {(health) / 10} </h2>
         {health >= value && (Math.floor(health / 10) > 1) ? (<h2> {Math.floor((health) / 10)} Fully Grown Plants</h2>) : (<h2> {Math.floor((health) / 10)} Fully Grown Plant</h2>)}
-        {health >= value && (
-          <h2>
-            {" "}
-            It’s not the events of our lives that shape us, but our beliefs as
-            to what those events mean{" "}
-          </h2>
-        )}
       </div>
       <div
         className="increment-screen"
@@ -147,6 +139,7 @@ function App() {
             borderWidth: 7,
             borderRadius: 5,
             borderColor: "#E36959",
+            //backgroundimage: URL("./assets/seed.png"),
           }}
           className="water-plant"
           onClick={waterPlant}
@@ -154,6 +147,7 @@ function App() {
           {" "}
           Water Plant{" "}
         </button>
+
         <br />
         <br />
         <button
@@ -178,20 +172,6 @@ function App() {
         <br />
 
         <br />
-        <button
-          style={{
-            height: 50,
-            backgroundColor: "#6eeb34",
-            borderWidth: 7,
-            borderRadius: 5,
-            borderColor: "#E36959",
-          }}
-          className="collect-water"
-          onClick={() => setWater(water_level + 1)}
-        >
-          {" "}
-          Collect Water{" "}
-        </button>
 
         <br />
         <h2 style={{ color: "white" }}>Current Health: {health}</h2>
@@ -210,11 +190,29 @@ function App() {
           ) : (
             <EmptyWateringCan style={{ height: "100px" }} />
           )}
-          <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+
+          <div style={{ paddingRight: "40%" }}>
+            <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+            <button
+              style={{
+                height: 50,
+                backgroundColor: "#6eeb34",
+                borderWidth: 7,
+                borderRadius: 5,
+                borderColor: "#E36959",
+              }}
+              className="collect-water"
+              onClick={() => setWater(water_level + 1)}
+            >
+              {" "}
+              Collect Water{" "}
+            </button>
+
+          </div>
         </div>
         <br />
-        <h2 style={{ color: "p" }}>Plant Size: {returnSize(health)}</h2>
-        <h2 style={{ color: "black" }}>Fruit Plants: {fruit}</h2>
+        <h2 style={{ color: "white", fontSize: 30, }}>Plant Size: {returnSize(health)}</h2>
+        <h2 style={{ color: "white" }}>Fruit Plants: {fruit}</h2>
         {health > SmallSizeLimit && (
           <h2 style={{ color: "cherry" }}>
             Total plant: {(health - 1) / 10}{" "}
@@ -275,7 +273,7 @@ function App() {
           </h2>
         )}
       </div>
-    </div>
+    </div >
   );
 }
 
