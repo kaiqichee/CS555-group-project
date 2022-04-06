@@ -83,12 +83,15 @@ function App() {
       setWater(water_level - 1);
       setHealth(health + 1);
     }
-  }
-  /* for every multiple of 3 there is a leaf being grown on the place (i.e. 3 water level means 1 leaf grown; 
+    /* for every multiple of 3 there is a leaf being grown on the place (i.e. 3 water level means 1 leaf grown; 
     6 water level means another leaf is grown, therefore there would be 2 leaves) */
     if(water_level % 3 == 0) {
       setLeaf(leaf_num + 1);
     }
+
+
+  }
+  
 
   return (
     <div
