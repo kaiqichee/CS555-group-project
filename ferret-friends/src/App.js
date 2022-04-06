@@ -206,6 +206,8 @@ function App() {
         <br />
         <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
         <br />
+        <h2 style={{color: 'white'}}>Leaf Size: {leaf_num}</h2>
+        <br />
         <div
           style={{
             display: "flex",
@@ -247,6 +249,21 @@ function App() {
             Total plant: {(health - 1) / 10}{" "}
           </h2> /*Total plant size*/
         )}
+        {
+          leaf_num >= 4 && (
+            <button
+            style={{
+              height: 50,
+              backgroundColor: "#6eeb34",
+              borderWidth: 7,
+              borderRadius: 5,
+              borderColor: "#E36959",
+            }}
+            onClick={() => setLeaf(0)}>
+              {" "}Prune{" "}
+            </button>
+          )
+        }
         {(health - 1) / 10 >= 5 && (
           <button
             style={{
