@@ -92,6 +92,17 @@ function App() {
     >
       <ReactAudioPlayer src={background} autoPlay controls volume={0.15} />
 
+      <a style = {{display: 'flex', justifyContent: 'left', color: 'white'}}
+            href={`data:text/json;charset=utf-8,${encodeURIComponent(
+              JSON.stringify({'Current Health': health,
+                              'Number of Seeds': seeds,
+                              'Water Level': water_level,
+                              'Fruit Plants': fruit })
+            )}`}
+            download="log.json"
+          >
+            {`Download Log`}
+          </a>
       <div>
         <button
           onClick={buttonHandle}
@@ -210,6 +221,7 @@ function App() {
 
           </div>
         </div>
+        
         <br />
         <h2 style={{ color: "white", fontSize: 30, }}>Plant Size: {returnSize(health)}</h2>
         <h2 style={{ color: "white" }}>Fruit Plants: {fruit}</h2>
