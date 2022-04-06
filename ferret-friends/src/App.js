@@ -14,6 +14,7 @@ function App() {
   const [fruit, setFruits] = useState(0);
   const [pfruit, setPFruits] = useState(0);
   const [bg_color, setBgColor] = useState(0);
+  const [leaf_num, setLeaf] = useState(0);
   const SmallSizeLimit = 50;
   const MediumSizeLimit = 200;
   const value = 10;
@@ -47,6 +48,14 @@ function App() {
     setBgColor(inputValue);
   };
 
+  // pruning the tree --> removing the leaves from the plant everytime 3 leaves are grown
+
+  function pruneTree(leaf_num){
+    if (leaf_num == 3){
+      leaf_num = 0;
+    }
+  }
+
   function returnSize(health) {
     //Returns the current size of the plant
     if (health <= SmallSizeLimit && health > 0) {
@@ -75,6 +84,11 @@ function App() {
       setHealth(health + 1);
     }
   }
+  /* for every multiple of 3 there is a leaf being grown on the place (i.e. 3 water level means 1 leaf grown; 
+    6 water level means another leaf is grown, therefore there would be 2 leaves) */
+    if(water_level % 3 == 0) {
+      setLeaf(leaf_num + 1);
+    }
 
   return (
     <div
