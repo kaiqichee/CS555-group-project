@@ -28,15 +28,28 @@ async function createUser(name) {
 }
 
 async function updateName(id, newName){
-    id=ObjectId(id);
+    //parse id to make sure it is a valid ObjectId, if not return -1
+    try {
+        id=ObjectId(id);
+    }
+    catch (e) {
+        return -1;
+    }
+    //get the user collection and specific user, return -1 if person doesn't exist
     const userCollection = await users();
     const specificPerson = await userCollection.findOne({_id:id});
+    if (specificPerson == undefined){
+        return -1;
+    }
+    //set new data to old data and change name
     let changedPerson = specificPerson;
     changedPerson.name = newName;
+    //update user in db, error if update doesn't work
     const updatedPerson = await userCollection.updateOne({_id:id}, {$set:changedPerson});
     if (updatedPerson === 0){
         throw 'Name could not be changed!';
     }
+    //stringify the id and return the object with new data
     changedPerson._id=changedPerson._id.toString();
     return changedPerson;
 }
