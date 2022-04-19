@@ -2,9 +2,10 @@ import "./App.css";
 import { useState } from "react";
 import { ReactComponent as EmptyWateringCan } from "./assets/empty_can.svg";
 import { ReactComponent as FullWateringCan } from "./assets/full_can.svg";
+import { ReactComponent as Sapling } from "./assets/seedling.svg";
 import { ReactComponent as SeedImage } from "./assets/seed.png"
 import ReactAudioPlayer from "react-audio-player";
-import Sun from "./hhJq_B.gif";
+import bg from "./assets/bg.png";
 const background = require("./background.mp3");
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
   var colors = [
     {
       value: 1,
-      label: "teal",
+      label: "blue",
     },
     {
       value: 2,
@@ -34,19 +35,21 @@ function App() {
     },
     {
       value: 4,
-      label: "#51ABF0",
+      label: "teal",
     },
   ];
-  var [inputValue, setInputValue] = useState(colors[0].label);
-  var [bgcolor, setbgColor] = useState(colors[0].label);
 
   var ddlhandle = (e) => {
-    setInputValue(e.target.value);
+    let color = e.target.value;
+    if (color === "blue") {
+      setBgColor("#51ABF0");
+    }
+    else {
+      setBgColor(color);
+    }
   };
 
-  var buttonHandle = () => {
-    setBgColor(inputValue);
-  };
+
 
   // pruning the tree --> removing the leaves from the plant everytime 3 leaves are grown
 
@@ -72,6 +75,19 @@ function App() {
     var RainDay = false;
     (numberOfSeeds == 10) ? RainDay = true : RainDay = false;
     return RainDay
+  }
+
+  function renderPlants(number) {
+    //Renders the plants
+    var plant = [];
+    for (var i = 0; i < number; i++) {
+      plant.push(
+        <div id={"plant"+i} className="plant">
+          <Sapling />
+        </div>
+      );
+    }
+    return plant;
   }
 
 
@@ -197,17 +213,7 @@ function App() {
           {" "}
           Buy Seeds{" "}
         </button>
-        <br />
 
-        <br />
-
-        <br />
-        <h2 style={{ color: "white" }}>Current Health: {health}</h2>
-        <br />
-        <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
-        <br />
-        <h2 style={{color: 'white'}}>Leaf Size: {leaf_num}</h2>
-        <br />
         <div
           style={{
             display: "flex",
@@ -240,15 +246,13 @@ function App() {
 
           </div>
         </div>
-        
-        <br />
+
+        <h2 style={{ color: "white" }}>Garden Health: {health}</h2>
+        <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
+        <h2 style={{color: 'white'}}>Leaf Size: {leaf_num}</h2>
+
         <h2 style={{ color: "white", fontSize: 30, }}>Plant Size: {returnSize(health)}</h2>
         <h2 style={{ color: "white" }}>Fruit Plants: {fruit}</h2>
-        {health > SmallSizeLimit && (
-          <h2 style={{ color: "cherry" }}>
-            Total plant: {(health - 1) / 10}{" "}
-          </h2> /*Total plant size*/
-        )}
         {
           leaf_num >= 4 && (
             <button
