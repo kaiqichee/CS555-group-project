@@ -54,7 +54,17 @@ async function updateName(id, newName){
     return changedPerson;
 }
 
-
+async function getUserByUsername(name){
+    //get the user collection and specific user, return -1 if person doesn't exist
+    const userCollection = await users();
+    const specificPerson = await userCollection.findOne({username:name});
+    if (specificPerson == undefined){
+        return -1;
+    }
+    //stringify the id and return the user object
+    specificPerson._id=specificPerson._id.toString();
+    return specificPerson;
+}
 
 //Create user Account
 // https://docs.mongodb.com/manual/tutorial/create-users/
@@ -114,5 +124,6 @@ module.exports ={
     updateName,
     checkWater,
     checkFertilizer,
-    updateWater
+    updateWater,
+    getUserByUsername
 }

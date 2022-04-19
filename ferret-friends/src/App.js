@@ -7,6 +7,14 @@ import ReactAudioPlayer from "react-audio-player";
 import Sun from "./hhJq_B.gif";
 const background = require("./background.mp3");
 
+//temp user to test display username function
+let tempUser =  {
+  "_id": "1234567890",
+  "username": "Bob Smith",
+  "password": "password1234",
+  "plants": [],
+  "money": 0}
+
 function App() {
   const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
   const [seeds, setSeeds] = useState(0);
@@ -15,6 +23,7 @@ function App() {
   const [pfruit, setPFruits] = useState(0);
   const [bg_color, setBgColor] = useState(0);
   const [leaf_num, setLeaf] = useState(0);
+  const [user, setUser] = useState(tempUser); //when login feature is fully implemented, set this to logged in user
   const SmallSizeLimit = 50;
   const MediumSizeLimit = 200;
   const value = 10;
@@ -46,6 +55,16 @@ function App() {
 
   var buttonHandle = () => {
     setBgColor(inputValue);
+  };
+
+  var welcome = () => {
+    //if there is a logged in user, greet them by name
+    if (user){
+      return `Hello, ${user.username}! `
+    }
+    else {
+      return "";
+    }
   };
 
   // pruning the tree --> removing the leaves from the plant everytime 3 leaves are grown
@@ -147,7 +166,7 @@ function App() {
         {/* <img src={Sun} height="200" width="200" /> */}
       </div>
       <div>
-        <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
+        <h1 style={{ color: "white" }}>{welcome()}Welcome to Garden Builder</h1>
         <br />
         <h2 style={{ color: "Red" }}>Total plant: {(health) / 10} </h2>
         {health >= value && (Math.floor(health / 10) > 1) ? (<h2> {Math.floor((health) / 10)} Fully Grown Plants</h2>) : (<h2> {Math.floor((health) / 10)} Fully Grown Plant</h2>)}
