@@ -53,8 +53,8 @@ function App() {
 
   // pruning the tree --> removing the leaves from the plant everytime 3 leaves are grown
 
-  function pruneTree(leaf_num){
-    if (leaf_num == 3){
+  function pruneTree(leaf_num) {
+    if (leaf_num == 3) {
       leaf_num = 0;
     }
   }
@@ -82,7 +82,7 @@ function App() {
     var plant = [];
     for (var i = 0; i < number; i++) {
       plant.push(
-        <div id={"plant"+i} className="plant">
+        <div id={"plant" + i} className="plant">
           <Sapling />
         </div>
       );
@@ -101,13 +101,13 @@ function App() {
     }
     /* for every multiple of 3 there is a leaf being grown on the place (i.e. 3 water level means 1 leaf grown; 
     6 water level means another leaf is grown, therefore there would be 2 leaves) */
-    if(water_level % 3 == 0) {
+    if (water_level % 3 == 0) {
       setLeaf(leaf_num + 1);
     }
 
 
   }
-  
+
 
   return (
     <div
@@ -128,19 +128,21 @@ function App() {
     >
       <ReactAudioPlayer src={background} autoPlay controls volume={0.15} />
       <div>
-        <a style = {{display: 'flex', justifyContent: 'left', color: 'white'}}
-              href={`data:text/json;charset=utf-8,${encodeURIComponent(
-                JSON.stringify({'Current Health': health,
-                                'Number of Seeds': seeds,
-                                'Water Level': water_level,
-                                'Fruit Plants': fruit })
-              )}`}
-              download="log.json"
-            >
-              {`Download Log`}
-            </a>
-        <div style={{position:"absolute", top:"0"}}>
-          <label htmlFor="colorSelect" style={{color:"white"}}>
+        <a style={{ display: 'flex', justifyContent: 'left', color: 'white' }}
+          href={`data:text/json;charset=utf-8,${encodeURIComponent(
+            JSON.stringify({
+              'Current Health': health,
+              'Number of Seeds': seeds,
+              'Water Level': water_level,
+              'Fruit Plants': fruit
+            })
+          )}`}
+          download="log.json"
+        >
+          {`Download Log`}
+        </a>
+        <div style={{ position: "absolute", top: "0" }}>
+          <label htmlFor="colorSelect" style={{ color: "white" }}>
             Change Background Color
           </label>
           <select name="colorSelect" placeholder="blue"
@@ -153,11 +155,15 @@ function App() {
           </select>
           {/* <img src={Sun} height="200" width="200" /> */}
         </div>
+
+        <div style={{ position: "absolute", top: "100", color: "white", fontWeight: "bold" }}>
+        </div>
+
       </div>
       <div>
         <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
         {health >= value && (Math.floor(health / 10) > 1) ? (<h2> {Math.floor((health) / 10)} Fully Grown Plants</h2>) : (<h2> {Math.floor((health) / 10)} Fully Grown Plant</h2>)}
-        <div className="plants" style={{display:"flex"}}>{renderPlants(Math.floor(health / 10))}</div>
+        <div className="plants" style={{ display: "flex" }}>{renderPlants(Math.floor(health / 10))}</div>
       </div>
       <div
         className="increment-screen"
@@ -169,7 +175,7 @@ function App() {
             borderWidth: 7,
             borderRadius: 5,
             borderColor: "#E36959",
-            //backgroundimage: URL("./assets/seed.png"),
+            color: "white",
           }}
           className="water-plant"
           onClick={waterPlant}
@@ -184,6 +190,7 @@ function App() {
             borderWidth: 7,
             borderRadius: 5,
             borderColor: "#E36851",
+            color: "White",
           }}
           className="buy-seeds"
           onClick={() => {
@@ -209,7 +216,7 @@ function App() {
             <EmptyWateringCan style={{ height: "100px" }} />
           )}
 
-          <div style={{ paddingRight: "23%" }}>
+          <div style={{ paddingRight: "12%" }}>
             <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
             <button
               style={{
@@ -231,21 +238,21 @@ function App() {
 
         <h2 style={{ color: "white" }}>Garden Health: {health}</h2>
         <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
-        <h2 style={{color: 'white'}}>Leaf Size: {leaf_num}</h2>
+        <h2 style={{ color: 'white' }}>Leaf Size: {leaf_num}</h2>
 
         <h2 style={{ color: "white", fontSize: 30, }}>Plant Size: {returnSize(health)}</h2>
         <h2 style={{ color: "white" }}>Fruit Plants: {fruit}</h2>
         {
           leaf_num >= 4 && (
             <button
-            style={{
-              height: 50,
-              backgroundColor: "#6eeb34",
-              borderWidth: 7,
-              borderRadius: 5,
-              borderColor: "#E36959",
-            }}
-            onClick={() => setLeaf(0)}>
+              style={{
+                height: 50,
+                backgroundColor: "#6eeb34",
+                borderWidth: 7,
+                borderRadius: 5,
+                borderColor: "#E36959",
+              }}
+              onClick={() => setLeaf(0)}>
               {" "}Prune{" "}
             </button>
           )
@@ -288,14 +295,14 @@ function App() {
         <br />
         <br />
         {health >= SmallSizeLimit && (
-          <h2 style={{ color: "gold", textShadow: "3px 1px 3px black"}}>
+          <h2 style={{ color: "gold", textShadow: "3px 1px 3px black" }}>
             {" "}
             "It’s not the events of our lives that shape us, but our beliefs as
             to what those events mean"{" "}
           </h2>
         )}
         {seeds >= 100 && (
-          <h2 style={{ color: "blue", textShadow: "3px 1px 3px black"}}>
+          <h2 style={{ color: "blue", textShadow: "3px 1px 3px black" }}>
             {" "}
             "Its your lucky day! It's Raining"{" "}
           </h2>
