@@ -90,6 +90,14 @@ function App() {
     return plant;
   }
 
+  function collectWater() {
+    if (water_level >= 10) {
+      alert("Water Can Full! Water plant to collect more water!");
+    } else {
+      setWater(water_level + 1);
+    }
+  }
+
 
 
   function waterPlant() {
@@ -154,10 +162,21 @@ function App() {
             ))}
           </select>
           {/* <img src={Sun} height="200" width="200" /> */}
+          <br />
+          <button
+            style={{
+              height: 50,
+              backgroundColor: "brown",
+              borderWidth: 7,
+              borderRadius: 5,
+              borderColor: "#E36851",
+              color: "White",
+              fontWeight: "bold",
+            }}
+            onClick={() => alert("Instructions \n1.) Collect water to water the plants.\n2.)")}>Instructions</button>
         </div>
 
-        <div style={{ position: "absolute", top: "100", color: "white", fontWeight: "bold" }}>
-        </div>
+
 
       </div>
       <div>
@@ -176,6 +195,7 @@ function App() {
             borderRadius: 5,
             borderColor: "#E36959",
             color: "white",
+            fontWeight: "bold",
           }}
           className="water-plant"
           onClick={waterPlant}
@@ -191,6 +211,7 @@ function App() {
             borderRadius: 5,
             borderColor: "#E36851",
             color: "White",
+            fontWeight: "bold",
           }}
           className="buy-seeds"
           onClick={() => {
@@ -203,14 +224,29 @@ function App() {
           {" "}
           Buy Seeds{" "}
         </button>
-
+        <button
+          style={{
+            height: 50,
+            backgroundColor: "#6eeb34",
+            borderWidth: 7,
+            borderRadius: 5,
+            borderColor: "#E36959",
+            fontWeight: "bold",
+          }}
+          className="collect-water"
+          onClick={collectWater}
+        >
+          {" "}
+          Collect Water{" "}
+        </button>
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            paddingTop: "10"
           }} >
-          {water_level > 0 ? (
+          {water_level >= 10 ? (
             <FullWateringCan style={{ height: "100px" }} />
           ) : (
             <EmptyWateringCan style={{ height: "100px" }} />
@@ -218,27 +254,12 @@ function App() {
 
           <div style={{ paddingRight: "12%" }}>
             <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
-            <button
-              style={{
-                height: 50,
-                backgroundColor: "#6eeb34",
-                borderWidth: 7,
-                borderRadius: 5,
-                borderColor: "#E36959",
-              }}
-              className="collect-water"
-              onClick={() => setWater(water_level + 1)}
-            >
-              {" "}
-              Collect Water{" "}
-            </button>
-
           </div>
         </div>
 
-        <h2 style={{ color: "white" }}>Garden Health: {health}</h2>
-        <h2 style={{ color: "white" }}>Number of Seeds: {seeds}</h2>
-        <h2 style={{ color: 'white' }}>Leaf Size: {leaf_num}</h2>
+        <h2 style={{ color: "white", fontWeight: "bold", }}>Overall Garden Health: {health}</h2>
+        <h2 style={{ color: "white", fontWeight: "bold", }}>Number of Seeds: {seeds}</h2>
+        <h2 style={{ color: 'white', fontWeight: "bold", }}>Leaf Size: {leaf_num}</h2>
 
         <h2 style={{ color: "white", fontSize: 30, }}>Plant Size: {returnSize(health)}</h2>
         <h2 style={{ color: "white" }}>Fruit Plants: {fruit}</h2>
