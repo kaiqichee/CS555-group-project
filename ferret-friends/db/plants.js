@@ -23,38 +23,57 @@ async function waterPlant(id, amount){
 }
 
 //plant dies if there is not enough care. 
-async function deadPlant(amount) {
+async function deadPlant(id, amount) {
+    id=ObjectId(id); 
     const plantCollection = await plants()
+    const specificPlant = await plantCollection.findOne({_id:id}, {$set:changedPlant});
+    changedPlant = specificPlant; 
     if(deadPlant === 0)  {
         throw 'Not enough care for the plant';
     }
+    console.log(deadPlant); 
+    changedPlant._id=changedPlant._id.toString();
+    return deadPlant; 
 }
 
 
 //pack fertilizer in dirt  
-const dirt = mongoCollections.dirt;
 async function fertilizer (id,amount) {
+    id=ObjectId(id); 
     const plantCollection = await plants()
     const specificPlant = await plantCollection.findOne({_id:id});
-    fertilizedPlant = specificPlant; 
-    fertilizedPlant._id = specificPlant.dirt; 
+    changedPlant = specificPlant; 
+
+    if(fertilizer == 0) {
+        throw 'Need to pack fertilizer in dirt' ; 
+    }
+    console.log(fertilizer); 
+    changedPlant._id=changedPlant._id.toString();
+    return(fertilizer); 
+    
 
 }
 
 //kill insects 
 const insect = mongoCollections.insects;
 async function killInsects(id, amount) {
-    const plantCollection = await plants();
+    id=ObjectId(id); 
+    const plantCollection = await plants()
+    const specificPlant = await plantCollection.findOne({_id:id}, {$set:changedPlant});
+    changedPlant = specificPlant; 
     if(killInsects == 0) {
         throw 'Insects are dead'; 
     }
-    //work in progress
+    console.log(killInsects); 
+    changedPlant._id=changedPlant._id.toString();
+    return killInsects; 
 }
 
 
-
-
-
 module.exports = {
-    waterPlant
+    waterPlant,
+    killInsects, 
+    fertilizer,
+    deadPlant
+
 }
