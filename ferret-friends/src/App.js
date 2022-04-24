@@ -193,7 +193,7 @@ function App() {
 
       </div>
       <div>
-        <h1 style={{ color: "white" }}>Welcome to Garden Builder</h1>
+        <h1 style={{ color: "white" }}>Welcome to Your Virtual Garden</h1>
         {health >= value && (Math.floor(health / 10) > 1) ? (<h2> {Math.floor((health) / 10)} Fully Grown Plants</h2>) : (<h2> {Math.floor((health) / 10)} Fully Grown Plant</h2>)}
         <div className="plants" style={{ display: "flex" }}>{renderPlants(Math.floor(health / 10))}</div>
       </div>
