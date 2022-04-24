@@ -54,7 +54,7 @@ function App() {
   // pruning the tree --> removing the leaves from the plant everytime 3 leaves are grown
 
   function pruneTree(leaf_num) {
-    if (leaf_num == 5) {
+    if (leaf_num == 3) {
       leaf_num = 0;
     }
   }
@@ -187,7 +187,7 @@ function App() {
               color: "White",
               fontWeight: "bold",
             }}
-            onClick={() => alert("Instructions \n1.) Collect water to fill up the watering can.\n2.)Water Plants to grow them\n3.)Watering plants lowers water levels\n4.)10 seeds causes a rainy day, increasing the garden health by 15 and growing more plants.\n5.)You can prune plants when number of leaves reaches 5, this will help maintain your garden.\n6.) Once you have 5 plants in garden, you can grow fruit.\n7.) Use drop down menu in the upper left corner to change your background color.")}>Instructions</button>
+            onClick={() => alert("Instructions \n1.) Collect water to fill up the watering can.\n2.)Water Plants to grow them\n3.)Watering plants lowers water levels\n4.)10 seeds causes a rainy day, increasing the garden health by 15 and growing more plants.\n5.)You can prune plants when number of leaves reaches 3, this will help maintain your garden.\n6.) Once you have 5 plants in garden, you can grow fruit.\n7.) Use drop down menu in the upper left corner to change your background color.")}>Instructions</button>
         </div>
 
 
