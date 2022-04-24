@@ -39,3 +39,13 @@
     transform: rotate(360deg);
   }
 }
+
+.plant {
+  width: 36pt;
+}
+
+.plants {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
