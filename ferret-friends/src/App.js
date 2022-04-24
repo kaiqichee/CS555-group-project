@@ -54,10 +54,11 @@ function App() {
   // pruning the tree --> removing the leaves from the plant everytime 3 leaves are grown
 
   function pruneTree(leaf_num) {
-    if (leaf_num == 3) {
+    if (leaf_num == 5) {
       leaf_num = 0;
     }
   }
+
 
   function returnSize(health) {
     //Returns the current size of the plant
@@ -77,6 +78,16 @@ function App() {
     return RainDay
   }
 
+  function growFruit() {
+    if (water_level > 0) {
+      setWater(water_level - 1)
+      setFruits(fruit + 1)
+    }
+    else {
+      alert("Collect More Water!")
+    }
+  }
+
   function renderPlants(number) {
     //Renders the plants
     var plant = [];
@@ -92,7 +103,7 @@ function App() {
 
   function collectWater() {
     if (water_level >= 10) {
-      alert("Water Can Full! Water plant to collect more water!");
+      alert("Water Can Full!");
     } else {
       setWater(water_level + 1);
     }
@@ -163,19 +174,21 @@ function App() {
           </select>
           {/* <img src={Sun} height="200" width="200" /> */}
           <br />
+
+        </div>
+        <div style={{ justifyContent: "right", alignItems: "left", paddingLeft: "90%" }}>
           <button
             style={{
               height: 50,
               backgroundColor: "brown",
               borderWidth: 7,
-              borderRadius: 5,
+              borderRadius: "50%",
               borderColor: "#E36851",
               color: "White",
               fontWeight: "bold",
             }}
-            onClick={() => alert("Instructions \n1.) Collect water to water the plants.\n2.)")}>Instructions</button>
+            onClick={() => alert("Instructions \n1.) Collect water to fill up the watering can.\n2.)Water Plants to grow them\n3.)Watering plants lowers water levels\n4.)10 seeds causes a rainy day, increasing the garden health by 15 and growing more plants.\n5.)You can prune plants when number of leaves reaches 5, this will help maintain your garden.\n6.) Once you have 5 plants in garden, you can grow fruit.\n7.) Use drop down menu in the upper left corner to change your background color.")}>Instructions</button>
         </div>
-
 
 
       </div>
@@ -192,7 +205,7 @@ function App() {
             height: 50,
             backgroundColor: "teal",
             borderWidth: 7,
-            borderRadius: 5,
+            borderRadius: "15%",
             borderColor: "#E36959",
             color: "white",
             fontWeight: "bold",
@@ -206,30 +219,9 @@ function App() {
         <button
           style={{
             height: 50,
-            backgroundColor: "brown",
-            borderWidth: 7,
-            borderRadius: 5,
-            borderColor: "#E36851",
-            color: "White",
-            fontWeight: "bold",
-          }}
-          className="buy-seeds"
-          onClick={() => {
-            setSeeds((seeds > 9) ? seeds - 10 : seeds + 1)
-            if (isRainDay(seeds)) {
-              setHealth(health + 15)
-            }
-          }}
-        >
-          {" "}
-          Buy Seeds{" "}
-        </button>
-        <button
-          style={{
-            height: 50,
             backgroundColor: "#6eeb34",
             borderWidth: 7,
-            borderRadius: 5,
+            borderRadius: "15%",
             borderColor: "#E36959",
             fontWeight: "bold",
           }}
@@ -239,6 +231,29 @@ function App() {
           {" "}
           Collect Water{" "}
         </button>
+        <button
+          style={{
+            height: 50,
+            backgroundColor: "#E36851",
+            borderWidth: 7,
+            borderRadius: "15%",
+            borderColor: "#E36851",
+            color: "White",
+            fontWeight: "bold",
+          }}
+          className="buy-seeds"
+          onClick={() => {
+            if (isRainDay(seeds)) {
+              setHealth(health + 15)
+              alert("It's a rainy day!!!")
+            }
+            setSeeds((seeds > 9) ? seeds - 10 : seeds + 1)
+          }}
+        >
+          {" "}
+          Buy Seeds{" "}
+        </button>
+
         <div
           style={{
             display: "flex",
@@ -246,25 +261,24 @@ function App() {
             justifyContent: "center",
             paddingTop: "10"
           }} >
-          {water_level >= 10 ? (
+          {water_level > 0 ? (
             <FullWateringCan style={{ height: "100px" }} />
           ) : (
             <EmptyWateringCan style={{ height: "100px" }} />
           )}
 
           <div style={{ paddingRight: "12%" }}>
-            <h2 style={{ color: "white" }}>Water Level: {water_level}</h2>
+            <h2 style={{ color: "navy" }}>{water_level} liters of water in the can</h2>
           </div>
         </div>
 
-        <h2 style={{ color: "white", fontWeight: "bold", }}>Overall Garden Health: {health}</h2>
-        <h2 style={{ color: "white", fontWeight: "bold", }}>Number of Seeds: {seeds}</h2>
-        <h2 style={{ color: 'white', fontWeight: "bold", }}>Leaf Size: {leaf_num}</h2>
-
-        <h2 style={{ color: "white", fontSize: 30, }}>Plant Size: {returnSize(health)}</h2>
-        <h2 style={{ color: "white" }}>Fruit Plants: {fruit}</h2>
+        <h2 style={{ color: "white", fontWeight: "bold", }}>Garden Health: {health}</h2>
+        <h2 style={{ color: "white", }}>Garden Size: {returnSize(health)}</h2>
+        <h2 style={{ color: "white", fontWeight: "bold", }}>Total Seeds: {seeds}</h2>
+        <h2 style={{ color: 'white', fontWeight: "bold", }}>Total Leaves: {leaf_num}</h2>
+        <h2 style={{ color: "white", fontWeight: "bold", }}>Total Fruit: {fruit}</h2>
         {
-          leaf_num >= 4 && (
+          leaf_num >= 5 && (
             <button
               style={{
                 height: 50,
@@ -272,6 +286,7 @@ function App() {
                 borderWidth: 7,
                 borderRadius: 5,
                 borderColor: "#E36959",
+                fontWeight: "bold",
               }}
               onClick={() => setLeaf(0)}>
               {" "}Prune{" "}
@@ -282,38 +297,42 @@ function App() {
           <button
             style={{
               height: 50,
-              backgroundColor: "#6eeb34",
+              backgroundColor: "orange",
               borderWidth: 7,
               borderRadius: 5,
               borderColor: "#E36959",
+              fontWeight: "bold",
             }}
             className="grow-fruit"
-            onClick={() => setFruits(fruit + 1)}
+            onClick={growFruit}
           >
             {" "}
-            Grow fruit tree{" "}
+            Grow Fruit{" "}
           </button>
         )}
-        {fruit > 10 && (
+        {fruit > 0 && (
           <button
             style={{
               height: 50,
-              backgroundColor: "#6eeb34",
+              backgroundColor: "orange",
               borderWidth: 7,
               borderRadius: 5,
               borderColor: "#E36959",
+              fontWeight: "bold",
             }}
             className="grow-fruit"
             onClick={() => setFruits(fruit - 1)}
           >
             {" "}
-            Pick the grown fruit{" "}
+            Pick Your Grown Fruit{" "}
           </button>
         )}
-        {health >= SmallSizeLimit && (
-          <h2 style={{ color: "cherry", textShadow: "0 1px 1px white" }}>Plant is fully grown</h2>
-        )}
+
         <br />
+        <br />
+        <br />
+        <br />        <br />
+        <br />        <br />
         <br />
         {health >= SmallSizeLimit && (
           <h2 style={{ color: "gold", textShadow: "3px 1px 3px black" }}>
