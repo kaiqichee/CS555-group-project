@@ -6,10 +6,11 @@ import { ReactComponent as Sapling } from "./assets/seedling.svg";
 import { ReactComponent as SeedImage } from "./assets/seed.png"
 import ReactAudioPlayer from "react-audio-player";
 import bg from "./assets/bg.png";
+import seed from "./assets/seed.png"
 const background = require("./background.mp3");
 
 function App() {
-  const [health, setHealth] = useState(1); // TODO: make sure plant can't be watered unless water_level >= 0
+  const [health, setHealth] = useState(1);
   const [seeds, setSeeds] = useState(0);
   const [water_level, setWater] = useState(0);
   const [fruit, setFruits] = useState(0);
@@ -20,7 +21,7 @@ function App() {
   const MediumSizeLimit = 200;
   const value = 10;
 
-  var colors = [
+  var colors = [ //Background colors
     {
       value: 1,
       label: "blue",
@@ -39,6 +40,8 @@ function App() {
     },
   ];
 
+
+  //Function handles background color changes
   var ddlhandle = (e) => {
     let color = e.target.value;
     if (color === "blue") {
@@ -52,16 +55,14 @@ function App() {
 
 
   // pruning the tree --> removing the leaves from the plant everytime 3 leaves are grown
-
   function pruneTree(leaf_num) {
     if (leaf_num == 3) {
       leaf_num = 0;
     }
   }
 
-
+  //Returns the current size of the plant
   function returnSize(health) {
-    //Returns the current size of the plant
     if (health <= SmallSizeLimit && health > 0) {
       return "Small";
     } else if (health <= MediumSizeLimit) {
@@ -136,7 +137,6 @@ function App() {
         position: "absolute",
         left: "0px",
         width: "100%",
-        // overflow: "hidden",
         backgroundColor: bg_color,
         backgroundImage: `url(${bg})`,
         backgroundRepeat: "no-repeat",
@@ -146,20 +146,20 @@ function App() {
       }}
     >
       <ReactAudioPlayer src={background} autoPlay controls volume={0.15} />
+      <a style={{ display: 'flex', justifyContent: 'left', color: 'white' }}
+        href={`data:text/json;charset=utf-8,${encodeURIComponent(
+          JSON.stringify({
+            'Current Health': health,
+            'Number of Seeds': seeds,
+            'Water Level': water_level,
+            'Fruit Plants': fruit
+          })
+        )}`}
+        download="log.json"
+      >
+        {`Download Log`}
+      </a>
       <div>
-        <a style={{ display: 'flex', justifyContent: 'left', color: 'white' }}
-          href={`data:text/json;charset=utf-8,${encodeURIComponent(
-            JSON.stringify({
-              'Current Health': health,
-              'Number of Seeds': seeds,
-              'Water Level': water_level,
-              'Fruit Plants': fruit
-            })
-          )}`}
-          download="log.json"
-        >
-          {`Download Log`}
-        </a>
         <div style={{ position: "absolute", top: "0" }}>
           <label htmlFor="colorSelect" style={{ color: "white" }}>
             Change Background Color
@@ -172,7 +172,6 @@ function App() {
               <option value={color.label}>{color.label}</option>
             ))}
           </select>
-          {/* <img src={Sun} height="200" width="200" /> */}
           <br />
 
         </div>
@@ -189,8 +188,6 @@ function App() {
             }}
             onClick={() => alert("Instructions \n1.) Collect water to fill up the watering can.\n2.)Water Plants to grow them\n3.)Watering plants lowers water levels\n4.)10 seeds causes a rainy day, increasing the garden health by 15 and growing more plants.\n5.)You can prune plants when number of leaves reaches 3, this will help maintain your garden.\n6.) Once you have 5 plants in garden, you can grow fruit.\n7.) Use drop down menu in the upper left corner to change your background color.")}>Instructions</button>
         </div>
-
-
       </div>
       <div>
         <h1 style={{ color: "white" }}>Welcome to Your Virtual Garden</h1>
@@ -253,7 +250,6 @@ function App() {
           {" "}
           Buy Seeds{" "}
         </button>
-
         <div
           style={{
             display: "flex",
