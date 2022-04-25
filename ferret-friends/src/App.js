@@ -15,7 +15,8 @@ let tempUser =  {
   "username": "Bob Smith",
   "password": "password1234",
   "plants": [],
-  "money": 0}
+  "money": 0,
+  "garden_name": "My Garden"}
 
 function App() {
   const [health, setHealth] = useState(1);
@@ -61,6 +62,9 @@ function App() {
     }
   };
 
+  var gardenName = () => {
+    return `${user.garden_name}`;
+  };
 
   var welcome = () => {
     //if there is a logged in user, greet them by name
@@ -163,6 +167,7 @@ function App() {
         backgroundSize: "100% auto",
         flex: 1,
       }}
+      
     >
       <ReactAudioPlayer src={background} autoPlay controls volume={0.15} />
       <a style={{ display: 'flex', justifyContent: 'left', color: 'white' }}
@@ -178,6 +183,7 @@ function App() {
       >
         {`Download Log`}
       </a>
+      
       <div>
         <div style={{ position: "absolute", top: "0" }}>
           <label htmlFor="colorSelect" style={{ color: "white" }}>
@@ -206,10 +212,22 @@ function App() {
               fontWeight: "bold",
             }}
             onClick={() => alert("Instructions \n1.) Collect water to fill up the watering can.\n2.)Water Plants to grow them\n3.)Watering plants lowers water levels\n4.)10 seeds causes a rainy day, increasing the garden health by 15 and growing more plants.\n5.)You can prune plants when number of leaves reaches 3, this will help maintain your garden.\n6.) Once you have 5 plants in garden, you can grow fruit.\n7.) Use drop down menu in the upper left corner to change your background color.")}>Instructions</button>
+          <button 
+          style = {{
+            height: 50,
+              backgroundColor: "brown",
+              borderWidth: 7,
+              borderRadius: "50%",
+              borderColor: "#E36851",
+              color: "White",
+              fontWeight: "bold",
+          }}
+          onClick={ ()=>{setHealth(1); setFruits(0); setLeaf(0); setSeeds(0); setWater(0)} }
+          >Reset Game</button>
         </div>
       </div>
       <div>
-        <h1 style={{ color: "white" }}>{welcome()}Welcome to Garden Builder</h1>
+        <h1 style={{ color: "white" }}>{welcome()}Welcome to {gardenName()}</h1>
         <br />
         <h2 style={{ color: "Red" }}>Total plant: {(health) / 10} </h2>
 
